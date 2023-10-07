@@ -14,7 +14,9 @@
           ]"
           v-for="x in [...Array(props.blok_style.segment).keys()]"
           :key="x"
-        ></div>
+        >
+          <FormPreview />
+        </div>
       </li>
     </ul>
   </div>
@@ -23,17 +25,13 @@
 <script setup lang="ts">
 import { EdgeType } from '@/constants'
 import { withDefaults, defineProps } from 'vue'
+import FormPreview from '@/components/FormPreview.vue'
 
 interface IGenerateComponentSettings {
   blok_style: EdgeType
 }
 
-const props = withDefaults(defineProps<IGenerateComponentSettings>(), {
-  blok_style: {
-    segment: 1,
-    id: 0
-  }
-})
+const props = withDefaults(defineProps<IGenerateComponentSettings>(), {})
 </script>
 
 <style scoped></style>

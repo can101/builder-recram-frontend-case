@@ -1,24 +1,29 @@
 <template>
-  <div class="w-full" @click="bool=!bool">
-    <p v-if="bool" class="text-center text-sm font-normal font-urbanist">
-      We are able to uncover powerful insights and scale best-in-class customer experience. Customer
-      feedback is disjointed and siloed across teams and technologies, and decisions are made on
-      assumptions rather than the customer reality. Unifies your customer data, analyzes it at scale
-      using AI, and gives you the intelligence to better understand the voice of your customers.
+  <div class="w-full">
+    <p :class="['break-all', props.fontSize, props.fontFamily, props.specification, props.view]">
+      {{ props.value }}
     </p>
-    <TextArea placeholder="text here" v-else/>
+    <textarea
+      :class="['resize-none outline-none w-full border border-[rgba(201,208,219,1)] text-xs font-light py-3 px-4 h-36 border-dashed',props.fontSize, props.fontFamily, props.specification, props.view]"
+      :value="props.value"
+      placeholder="text here"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import TextArea from '@/components/form/TextArea.vue'
-import { withDefaults, defineProps,ref } from 'vue'
-let bool=ref(false)
-interface IParagraph {
-  text?: string,
-}
+import { withDefaults, defineProps } from 'vue'
 
-const props = withDefaults(defineProps<IParagraph>(), {
-})</script>
+const props = withDefaults(defineProps<IParagraph>(), {})
+
+interface IParagraph {
+  text?: string
+  value?: string
+  fontSize?: string
+  fontFamily?: string
+  specification?: string
+  view?: string
+}
+</script>
 
 <style lang="scss" scoped></style>

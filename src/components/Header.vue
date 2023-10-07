@@ -20,7 +20,7 @@
       <Button title="design" variant="ghost" :isActive="true" />
       <Button title="trigger" variant="ghost" />
       <Button title="completed" variant="ghost" />
-      <div class="absolute top-full left-1/2 translate-y-6 -translate-x-1/2">
+      <div class="absolute top-full left-1/2 translate-y-6 -translate-x-1/2 z-50">
         <ul class="flex items-center gap-3">
           <li class="flex items-center text-[rgba(17,24,39,1)]">
             <button>

@@ -1,5 +1,6 @@
 import { IconText, IconButton, IconBlok, IconInput } from '@/components/icons'
 
+
 enum WidthSize {
   'default' = '',
   'wide' = 'width__size_wide',
@@ -27,6 +28,7 @@ enum ComponentTypes {
 
 type VariantType = 'solid' | 'ghost' | 'outline' | 'soft'
 type SizeType = 'wide' | 'full' | 'default'
+type FontSize = 'text-xs' | 'text-sm' |'text-base'|'text-lg'|'text-xl'
 type EdgeSpacingType = {
   left: number
   top: number
@@ -99,7 +101,7 @@ const FORM_COMPONENTS_PROPS: any = {
     marginSpacing: {
       left: 20,
       top: 20,
-      right: 20,
+      right: 12,
       bottom: 20
     },
     paddingSpacing: {
@@ -146,6 +148,7 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
     {
       id: 1,
       label: 'blok stili',
+      name:'blok_style',
       current: {
         segment: 1,
         id: 0
@@ -155,6 +158,7 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
     {
       id: 2,
       label: 'İç Kenar Boşluğu',
+      name:'marginSpacing',
       type: ComponentTypes.SpacingBox,
       edgeSpacing: {
         left: 20,
@@ -166,6 +170,7 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
     {
       id: 3,
       label: 'Dış Kenar Boşluğu',
+      name:'paddingSpacing',
       type: ComponentTypes.SpacingBox,
       edgeSpacing: {
         left: 20,
@@ -184,7 +189,8 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
     {
       id: 1,
       type: ComponentTypes.SelectBox,
-      values: [{ text: 'paragraph', id: 0 }]
+      values: [{ text: 'paragraph', id: 0 }],
+      label:''
     },
     {
       id: 2,
@@ -194,14 +200,17 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
     {
       id: 3,
       type: ComponentTypes.SelectBox,
+      label:'font',
+      name:'font_family',
       values: [
         { text: 'rubik', id: 0, name: 'font-rubik' },
         { text: 'urbanist', id: 1, name: 'font-urbanist' }
-      ]
+      ],
     },
     {
       id: 4,
       label: 'font size',
+      name:'font_size',
       type: ComponentTypes.FontSizeBox,
       current: 'text-base'
     },
@@ -219,6 +228,7 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
     {
       id: 7,
       label: 'view',
+      name: 'view',
       type: ComponentTypes.SelectBox,
       placeholder: 'https://',
       current: {
@@ -228,15 +238,18 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
       values: [
         {
           text: 'desktop & mobile',
-          id: 0
+          id: 0,
+          name:''
         },
         {
           text: 'only desktop',
-          id: 1
+          id: 1,
+          name:'hidden lg:block'
         },
         {
           text: 'only mobile',
-          id: 2
+          id: 2,
+          name:'block lg:hidden'
         }
       ]
     }
@@ -256,12 +269,62 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
       id: 2,
       type: ComponentTypes.SelectBox,
       label: 'action',
-      values: [
-        {
+      name:'action',
+      values:[{
           text: 'Dropdown Button',
           id: 0
-        }
+        }]
+    },
+    {
+      id: 3,
+      type: ComponentTypes.SelectBox,
+      label: 'width',
+      name:'widthSize',
+      values:[
+        {
+        id: 0,
+        text: 'default',
+        name:'default'
+        },
+        {
+          id: 1,
+          text: 'wide',
+          name:'wide'
+        },
+        {
+          id: 0,
+          text: 'full',
+          name:'full'
+        },
       ]
+    },
+    {
+      id: 4,
+      type: ComponentTypes.SelectBox,
+      label: 'variant',
+      name:'variant',
+      values:[
+        {
+          id: 0,
+          text: 'solid',
+          name:'solid'
+        },
+        {
+          id: 1,
+          text: 'ghost',
+          name:'ghost'
+        },
+        {
+          id: 2,
+          text: 'outline',
+          name:'outline'
+        },
+        {
+          id: 3,
+          text: 'soft',
+          name:'soft'
+        },
+        ]
     }
   ],
   TextField: [
@@ -281,9 +344,44 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
       type: ComponentTypes.TextField,
       label: 'name',
       placeholder: 'placeholder'
-    }
+    },
+    {
+      id: 3,
+      type: ComponentTypes.TextField,
+      label: 'label',
+      placeholder: 'label'
+    },
+    {
+      id: 4,
+      type: ComponentTypes.SelectBox,
+      label: 'width',
+      name:'widthSize',
+      values:[
+        {
+          id: 0,
+          text: 'default',
+          name:'default'
+        },
+        {
+          id: 1,
+          text: 'wide',
+          name:'wide'
+        },
+        {
+          id: 0,
+          text: 'full',
+          name:'full'
+        },
+        ]
+    },
+    {
+      id: 5,
+      type: ComponentTypes.TextField,
+      label: 'value',
+      placeholder: 'value'
+    },
   ]
 }
 
 export { FORM_COMPONENTS, FORM_COMPONENTS_SETTING_LAYOUT, ComponentTypes, WidthSize }
-export type { IGenerateComponentItem, SizeType, VariantClass ,EdgeType,EdgeSpacingType}
+export type { IGenerateComponentItem, SizeType, VariantClass ,EdgeType,EdgeSpacingType,FontSize}

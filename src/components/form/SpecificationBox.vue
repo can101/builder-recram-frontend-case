@@ -32,60 +32,77 @@ import {
   IconUnderline,
   IconItalic
 } from '@/components/icons'
-import { withDefaults, defineProps, ref } from 'vue'
+import { IGenerateComponentItem } from '@/constants'
+import { withDefaults, defineProps, ref, defineEmits } from 'vue'
+
+const emit = defineEmits(['newValue'])
 
 type CurrentType = {
   icon?: any
   label?: string
   id?: number
 }
+
 interface ISpecificationBox {
   label?: string
   current?: CurrentType
+  value?: string
 }
+
 const props = withDefaults(defineProps<ISpecificationBox>(), {})
 
 const iconList = [
   {
     icon: IconBold,
-    label: 'IconBold',
+    label: 'IconTextBold',
+    name: 'font-bold',
     id: 0
   },
   {
     icon: IconUnderline,
-    label: 'IconUnderline',
+    label: 'IconTextUnderline',
+    name: 'underline',
     id: 1
   },
   {
     icon: IconItalic,
-    label: 'IconItalic',
+    label: 'IconTextItalic',
+    name: 'italic',
     id: 2
   },
   {
     icon: IconTextAlignCenter,
     label: 'IconTextAlignCenter',
+    name: 'text-center',
     id: 3
   },
   {
     icon: IconTextAlignLeft,
     label: 'IconTextAlignLeft',
+    name: 'text-left',
     id: 4
   },
   {
     icon: IconTextAlignRight,
     label: 'IconTextAlignRight',
+    name: 'text-right',
     id: 5
   },
   {
     icon: IconTextAlignJustified,
     label: 'IconTextAlignJustified',
+    name: 'text-justify',
     id: 6
   }
 ]
 
-let currentVal = ref(iconList[3])
+let currentVal = ref(props.value ?? iconList[2])
 
 const handleClick = (item: any): void => {
   currentVal.value = item
+  emit('newValue', {
+    value: { label: item.label, id: item.id, name: item.name },
+    label: 'specification'
+  })
 }
 </script>

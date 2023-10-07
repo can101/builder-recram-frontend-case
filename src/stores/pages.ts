@@ -6,6 +6,7 @@ interface State {
   pages: any[]
   activePageId: string
   addItemType:ComponentTypes
+  settingElementId:string
   showSetting:boolean
 }
 
@@ -15,7 +16,8 @@ export const usePageStore = defineStore('pages', {
       pages: [],
       activePageId: "",
       addItemType:null,
-      showSetting:false
+      showSetting:false,
+      settingElementId:""
     }
   },
   getters: {
@@ -39,6 +41,7 @@ export const usePageStore = defineStore('pages', {
       }
       const newPageObject = { name: `page ${pageLength + 1}`, pageId, id: pageLength, domList: [] }
       this.pages.push(newPageObject)
+      this.showSetting=false;
     },
     duplicate(item: any) {
       const pageLength = this.pages.length
@@ -60,6 +63,20 @@ export const usePageStore = defineStore('pages', {
           this.addItemType=type;
       }
    },
+    updateSettingElemntID(id:string){
+      this.settingElementId=id;
+      if(this.showSetting==true){
+        this.showSetting=false;
+      }
+   },
+    updateDomListItem(item){
+      const { pages, activePageId } = this
+      const index = pages.findIndex((page) => page.pageId ===activePageId);
+      const d=JSON.parse(JSON.stringify(this.pages[index].domList));
+      const s=d.findIndex(el=>el.id==item.id);
+      d[s]=item;
+      this.pages[index].domList=d;
+    },
     updateActivePageDomList(list: any) {
       const pages = this.pages
       const index = pages.findIndex((page) => page.pageId === this.activePageId)

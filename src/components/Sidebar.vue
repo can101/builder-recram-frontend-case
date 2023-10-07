@@ -5,7 +5,7 @@
       class="dragArea list-group flex flex-col gap-2"
       :list="formComponentList"
       :sort="false"
-      :clone="dogClone"
+      :clone="clone"
       :group="{ name: 'people', pull: 'clone', put: false }"
       item-key="name"
       @end="end"
@@ -30,14 +30,15 @@
 
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import GenerateComponent from './GenerateComponent.vue'
 import { FORM_COMPONENTS, FORM_COMPONENTS_SETTING_LAYOUT } from '@/constants'
 import { usePageStore } from '@/stores/pages'
 import { storeToRefs } from 'pinia'
+import { nanoid } from 'nanoid'
 
 const pageStore = usePageStore()
-const { addItemType, showSetting } = storeToRefs(pageStore)
+const { addItemType, showSetting, pages } = storeToRefs(pageStore)
 
 let formComponentList = ref(FORM_COMPONENTS)
 
@@ -46,17 +47,16 @@ const toArr = (proxyList: any) => JSON.parse(JSON.stringify(proxyList))
 const log = (evt: any) => {
   console.log('log', evt)
 }
-const dogClone = ({name,icon,...other}: any) => {
-//  delete item.icon
-//  delete item.name
-  return other
+const clone = ({ name, icon, ...other }: any) => {
+  console.log({ ...other, id: nanoid() })
+  return { ...other, id: nanoid() }
 }
 const start = (e: any) => {
   console.log('true draggging', e)
 }
 const end = (e: any) => {
   console.log('false')
-  pageStore.modifyShowSeeting(true,null);
+  pageStore.modifyShowSeeting(true, null)
 }
 const move = (e: any) => {
   console.log('move', e)

@@ -4,7 +4,9 @@
       {{ props.label }}
     </h5>
     <div class="flex gap-2">
-      <div class="after-px input-box shrink-0 before:h-[calc(100%-10px)] before:w-[1px] before:top-1/2 before:-translate-y-1/2">
+      <div
+        class="after-px input-box shrink-0 before:h-[calc(100%-10px)] before:w-[1px] before:top-1/2 before:-translate-y-1/2"
+      >
         <input
           min="0"
           v-model="data.left"
@@ -47,11 +49,16 @@
         />
       </div>
     </div>
+    <div>
+      {{ props.item }}
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { withDefaults, defineProps, reactive } from 'vue'
+import { withDefaults, defineProps, reactive, defineEmits, watch } from 'vue'
+
+const emit = defineEmits(['newValue'])
 
 interface IEdgeSpacing {
   left?: number
@@ -59,21 +66,20 @@ interface IEdgeSpacing {
   right?: number
   bottom?: number
 }
+
 interface ISelectBox {
   label?: string
   edgeSpacing?: IEdgeSpacing
+  name?: string
 }
 
 const data = reactive(props.edgeSpacing)
 
-const props = withDefaults(defineProps<ISelectBox>(), {
-  edgeSpacing: () => ({
-    left: 20,
-    top: 20,
-    right: 20,
-    bottom: 20
-  })
+watch(data, () => {
+  emit('newValue', { value: data, label: props.name })
 })
+
+const props = withDefaults(defineProps<ISelectBox>(), {})
 </script>
 
 <style scoped>
@@ -82,15 +88,19 @@ const props = withDefaults(defineProps<ISelectBox>(), {
   -webkit-appearance: none;
   margin: 0;
 }
+
 .remove-arrow {
   -moz-appearance: textfield;
 }
+
 .after-px {
   @apply after:content-['px.'] after:text-[rgba(201,208,219,1)] after:absolute after:right-2 after:top-1/2 after:-translate-y-1/2 after:font-light after:text-xs;
 }
+
 .input-box {
   @apply relative before:content-[''] h-[40px] w-[60px] before:bg-black before:absolute;
 }
+
 .input {
   @apply remove-arrow resize-none outline-none h-full w-full ps-3 pe-7 rounded w-full border border-[rgba(201,208,219,1)] text-sm font-light font-rubik;
 }

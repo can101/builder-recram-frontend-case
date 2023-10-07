@@ -31,7 +31,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, withDefaults, defineProps } from 'vue'
+import { ref, withDefaults, defineProps, defineEmits } from 'vue'
+
+const emit = defineEmits(['newValue'])
 
 let list = ref([
   {
@@ -54,13 +56,16 @@ interface ICurrent {
   segment?: number
   id?: number
 }
+
 interface IBlokStyleBox {
   label?: string
   current?: ICurrent
+  name?: string
 }
 
 const handleClick = (item: any): void => {
   selectedItem.value = item
+  emit('newValue', { value: item, label: props.name })
 }
 
 const props = withDefaults(defineProps<IBlokStyleBox>(), {})

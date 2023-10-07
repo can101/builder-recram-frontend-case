@@ -23,7 +23,8 @@
 </template>
 
 <script lang="ts" setup>
-import { withDefaults, defineProps, ref } from 'vue'
+import {withDefaults, defineProps, ref, watch,defineEmits} from 'vue'
+const emit = defineEmits(['newValue'])
 
 interface ITextField {
   label?: string
@@ -38,7 +39,11 @@ const props = withDefaults(defineProps<ITextField>(), {
 
 let currentVal = ref(props.values[3])
 
+watch(currentVal.value,()=>{
+})
+
 const handleClick = (item: any): void => {
   currentVal.value = item
+  emit("newValue",{value:currentVal,item,label:'font_size'})
 }
 </script>

@@ -20,13 +20,16 @@
 </template>
 
 <script lang="ts" setup>
-import { withDefaults, defineProps, ref } from 'vue'
+import { withDefaults, defineProps, ref, defineEmits, watch } from 'vue'
 import { IconLeftArrow } from '@/components/icons'
+
+const emit = defineEmits(['newValue'])
 
 interface ISelectBox {
   label?: string
   values?: any[]
-  current?: ''
+  current?: any
+  name?: string
 }
 
 const props = withDefaults(defineProps<ISelectBox>(), {
@@ -49,7 +52,13 @@ const props = withDefaults(defineProps<ISelectBox>(), {
 
 let currentVal = ref(props.current ? props.current : props.values[0])
 
+watch(currentVal, () => {
+  console.log('curre', currentVal.value)
+  emit('newValue', { value: currentVal.value, label: props.name })
+})
+
 const handleClick = (item: any): void => {
   currentVal.value = item
+  emit('newValue', { value: item, label: props.label })
 }
 </script>

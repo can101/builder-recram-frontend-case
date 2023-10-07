@@ -6,12 +6,14 @@
     <input
       class="resize-none outline-none rounded w-full border border-[rgba(201,208,219,1)] text-xs font-light py-3 px-4 font-rubik"
       :placeholder="props.placeholder"
+      v-model="val"
+      @input="$emit('newValue', { value: $event.target.value, label: props.label })"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { withDefaults, defineProps } from 'vue'
+import { withDefaults, defineProps, ref } from 'vue'
 import { type SizeType, WidthSize } from '@/constants'
 
 interface ITextField {
@@ -22,7 +24,13 @@ interface ITextField {
   widthSize?: SizeType
 }
 
+const handleInput = (e) => {
+  console.log(e.target.value)
+}
+
 const props = withDefaults(defineProps<ITextField>(), {
-  widthSize: 'default'
+  widthSize: 'default',
 })
+
+const val = ref(props.value)
 </script>
