@@ -32,7 +32,6 @@ import {
   IconUnderline,
   IconItalic
 } from '@/components/icons'
-import { IGenerateComponentItem } from '@/constants'
 import { withDefaults, defineProps, ref, defineEmits } from 'vue'
 
 const emit = defineEmits(['newValue'])

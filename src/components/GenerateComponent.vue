@@ -85,7 +85,6 @@ const changeTitle = ({ label, value }) => {
 }
 
 watch(settingRef.value, () => {
-  console.log(settingData)
   pageStore.updateDomListItem(settingData)
 })
 

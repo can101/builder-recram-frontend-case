@@ -30,7 +30,7 @@
 
 <script lang="ts" setup>
 import draggable from 'vuedraggable'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import GenerateComponent from './GenerateComponent.vue'
 import { FORM_COMPONENTS, FORM_COMPONENTS_SETTING_LAYOUT } from '@/constants'
 import { usePageStore } from '@/stores/pages'
@@ -38,27 +38,16 @@ import { storeToRefs } from 'pinia'
 import { nanoid } from 'nanoid'
 
 const pageStore = usePageStore()
-const { addItemType, showSetting, pages } = storeToRefs(pageStore)
+const { addItemType, showSetting } = storeToRefs(pageStore)
 
 let formComponentList = ref(FORM_COMPONENTS)
 
 const toArr = (proxyList: any) => JSON.parse(JSON.stringify(proxyList))
 
-const log = (evt: any) => {
-  console.log('log', evt)
-}
 const clone = ({ name, icon, ...other }: any) => {
-  console.log({ ...other, id: nanoid() })
   return { ...other, id: nanoid() }
 }
-const start = (e: any) => {
-  console.log('true draggging', e)
-}
-const end = (e: any) => {
-  console.log('false')
+const end = () => {
   pageStore.modifyShowSeeting(true, null)
-}
-const move = (e: any) => {
-  console.log('move', e)
 }
 </script>

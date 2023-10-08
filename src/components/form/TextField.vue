@@ -24,10 +24,6 @@ interface ITextField {
   widthSize?: SizeType
 }
 
-const handleInput = (e) => {
-  console.log(e.target.value)
-}
-
 const props = withDefaults(defineProps<ITextField>(), {
   widthSize: 'default',
 })

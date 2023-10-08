@@ -35,9 +35,7 @@ interface ISelectBox {
 
 
 const props = withDefaults(defineProps<ISelectBox>(), {
-  values: () => {
-
-  },
+  values: () => {},
   label: 'view'
 })
 
@@ -47,9 +45,4 @@ watch(currentVal, () => {
   console.log('curre', currentVal.value)
   emit('newValue', { value: currentVal.value, label: props.name })
 })
-
-const handleClick = (item: any): void => {
-  currentVal.value = item
-  emit('newValue', { value: item, label: props.label })
-}
 </script>

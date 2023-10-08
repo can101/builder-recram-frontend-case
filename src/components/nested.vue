@@ -44,12 +44,6 @@
         />
       </div>
     </template>
-    <!--<template #item="{ element }">-->
-    <!--  <li>-->
-    <!--    <p>{{ element }}</p>-->
-    <!--<nested-draggable :tasks="element.tasks" />-->
-    <!--  </li>-->
-    <!--</template>-->
   </draggable>
 </template>
 <script lang="ts" setup>
@@ -59,15 +53,11 @@ import Button from './Button.vue'
 import Paragraph from '@/components/form/Paragraph.vue'
 import { TextField } from '@/components/form'
 import { ComponentTypes } from '@/constants'
-import { ref, watch, defineProps, withDefaults } from 'vue'
-import { storeToRefs } from 'pinia'
-import { usePageStore } from '@/stores/pages'
 import BlokBox from '@/components/form/BlokBox.vue'
 
 const pageStore = usePageStore()
 
 const clone = (item: any) => {
-  console.lo(item, 'ds')
   return { ...item, id: nanoid() }
 }
 

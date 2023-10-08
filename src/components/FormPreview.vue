@@ -78,7 +78,6 @@ const toArr = (proxyList: any) => JSON.parse(JSON.stringify(proxyList))
 
 watch(previewDomList.value, (_, newVal) => {
   const domList = toArr(newVal)
-  console.log(domList)
 })
 const clone = (item: any) => {
   console.lo(item, 'ds')
@@ -86,7 +85,6 @@ const clone = (item: any) => {
 }
 const log = (event: any) => {
   const dropedElement = toArr(event.added.element)
-  console.log('change', dropedElement)
   pageStore.modifyShowSeeting(true, dropedElement.type)
   pageStore.updateSettingElemntID(dropedElement.id)
 }
