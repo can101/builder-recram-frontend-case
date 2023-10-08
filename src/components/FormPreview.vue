@@ -44,6 +44,9 @@
               v-else-if="element.type == ComponentTypes.Paragraph"
             />
             <BlokBox
+              :margin="element.marginSpacing"
+              :padding="element.paddingSpacing"
+              :segmentDomList="element.segmentDomList"
               :blok_style="element.blok_style"
               v-else-if="element.type == ComponentTypes.Blok"
             />

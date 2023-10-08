@@ -37,7 +37,7 @@
     </div>
     <div class="flex gap-2">
       <Button title="preview" variant="outline" />
-      <Button title="publish" variant="solid" />
+      <Button title="publish" variant="solid" @click-event="emit('show-event',true)" />
     </div>
   </header>
 </template>
@@ -52,4 +52,6 @@ import {
   IconMobile
 } from '@/components/icons'
 import Button from '@/components/Button.vue'
+import {defineEmits} from "vue"
+const emit=defineEmits(['show-event']);
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <button :class="['button', VariantClass[props.variant],ButtonWidthSize[props.widthSize]]">
+  <button @click="emit('click-event')" :class="['button', VariantClass[props.variant],ButtonWidthSize[props.widthSize]]">
     <slot></slot>
     <span
       v-if="props.title"
@@ -10,7 +10,8 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import { defineProps,defineEmits} from "vue"
+const emit=defineEmits(['click-event']);
 
 type VariantType = 'solid' | 'ghost' | 'outline' | 'soft'
 type SizeType = 'wide' | 'full' | 'default'

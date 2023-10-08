@@ -69,7 +69,8 @@ const FORM_COMPONENTS_PROPS: any = {
     title: 'button',
     variant: 'solid',
     isActive: false,
-    widthSize: 'wide'
+    widthSize: 'wide',
+    action:null
   },
   TextField: {
     title: 'input',
@@ -98,17 +99,23 @@ const FORM_COMPONENTS_PROPS: any = {
       segment: 1,
       id: 0
     },
+    segmentDomList:[
+      {
+        "Id": "PtFNiLqykh8XsOPxFoDWV",
+        "List": []
+      }
+      ],
     marginSpacing: {
-      left: 20,
-      top: 20,
-      right: 12,
-      bottom: 20
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0
     },
     paddingSpacing: {
-      left: 20,
-      top: 20,
-      right: 20,
-      bottom: 20
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0
     }
   }
 }
@@ -158,25 +165,25 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
     {
       id: 2,
       label: 'İç Kenar Boşluğu',
-      name:'marginSpacing',
+      name:'paddingSpacing',
       type: ComponentTypes.SpacingBox,
       edgeSpacing: {
-        left: 20,
-        top: 20,
-        right: 20,
-        bottom: 20
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0
       }
     },
     {
       id: 3,
       label: 'Dış Kenar Boşluğu',
-      name:'paddingSpacing',
+      name:'marginSpacing',
       type: ComponentTypes.SpacingBox,
       edgeSpacing: {
-        left: 20,
-        top: 20,
-        right: 20,
-        bottom: 20
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0
       }
     }
   ],
@@ -303,6 +310,11 @@ const FORM_COMPONENTS_SETTING_LAYOUT = {
       type: ComponentTypes.SelectBox,
       label: 'variant',
       name:'variant',
+      current:{
+        id: 3,
+        text: 'soft',
+        name:'soft'
+      },
       values:[
         {
           id: 0,

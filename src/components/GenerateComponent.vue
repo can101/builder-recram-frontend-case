@@ -22,6 +22,7 @@
         :label="item.label"
         :values="item.values"
         :current="item.current"
+        :type="item.type"
         v-else-if="ComponentTypes.SelectBox == item.type"
       />
       <Form.SpecificationBox
