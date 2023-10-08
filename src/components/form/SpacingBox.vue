@@ -49,9 +49,6 @@
         />
       </div>
     </div>
-    <div>
-      {{ props.item }}
-    </div>
   </div>
 </template>
 

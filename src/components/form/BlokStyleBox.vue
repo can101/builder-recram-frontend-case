@@ -32,6 +32,7 @@
 
 <script lang="ts" setup>
 import { ref, withDefaults, defineProps, defineEmits } from 'vue'
+import { nanoid } from 'nanoid'
 
 const emit = defineEmits(['newValue'])
 
@@ -63,9 +64,16 @@ interface IBlokStyleBox {
   name?: string
 }
 
+const segmentDomListGenerate = (segment) =>
+  [...Array(segment).keys()].map(() => ({
+    id: nanoid(),
+    list: []
+  }))
+
 const handleClick = (item: any): void => {
   selectedItem.value = item
   emit('newValue', { value: item, label: props.name })
+  emit('newValue', { value: segmentDomListGenerate(item.segment), label: 'segmentDomList' })
 }
 
 const props = withDefaults(defineProps<IBlokStyleBox>(), {})

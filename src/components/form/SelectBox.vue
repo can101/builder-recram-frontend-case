@@ -4,9 +4,7 @@
       {{ props.label }}
     </h5>
     <div class="relative">
-      <div
-        class="absolute -rotate-90 origin-center right-3 top-1/2 -translate-y-1/2 text-[rgba(130,140,154,1)]"
-      >
+      <div class="absolute -rotate-90 origin-center right-3 top-1/2 -translate-y-1/2 text-[rgba(130,140,154,1)]">
         <IconLeftArrow />
       </div>
       <select
@@ -20,8 +18,9 @@
 </template>
 
 <script lang="ts" setup>
-import { withDefaults, defineProps, ref, defineEmits, watch } from 'vue'
+import { defineEmits, defineProps, ref, watch, withDefaults } from 'vue'
 import { IconLeftArrow } from '@/components/icons'
+import { ComponentTypes } from '@/constants'
 
 const emit = defineEmits(['newValue'])
 
@@ -30,23 +29,15 @@ interface ISelectBox {
   values?: any[]
   current?: any
   name?: string
+  type?: ComponentTypes
 }
 
+
+
 const props = withDefaults(defineProps<ISelectBox>(), {
-  values: () => [
-    {
-      text: 'desktop & mobile',
-      id: 0
-    },
-    {
-      text: 'only desktop',
-      id: 1
-    },
-    {
-      text: 'only mobile',
-      id: 2
-    }
-  ],
+  values: () => {
+
+  },
   label: 'view'
 })
 
