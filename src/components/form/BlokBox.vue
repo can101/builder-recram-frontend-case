@@ -25,15 +25,15 @@
 </template>
 
 <script setup lang="ts">
-import { EdgeType, EdgeSpacingType } from '@/constants'
+import { type EdgeType, type EdgeSpacingType } from '@/constants'
 import { withDefaults, defineProps } from 'vue'
-import Nested from '@/components/nested.vue'
+import Nested from '../nested.vue'
 
 interface IGenerateComponentSettings {
   blok_style: EdgeType
   margin: EdgeSpacingType
   padding: EdgeSpacingType
-  segmentDomList: Array
+  segmentDomList: any[]
 }
 
 const props = withDefaults(defineProps<IGenerateComponentSettings>(), {})

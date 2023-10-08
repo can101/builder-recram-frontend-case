@@ -54,6 +54,7 @@ import Paragraph from '@/components/form/Paragraph.vue'
 import { TextField } from '@/components/form'
 import { ComponentTypes } from '@/constants'
 import BlokBox from '@/components/form/BlokBox.vue'
+import { usePageStore } from '@/stores/pages'
 
 const pageStore = usePageStore()
 

@@ -34,11 +34,6 @@
 <script lang="ts" setup>
 import { withDefaults, defineProps } from 'vue'
 import { IconArrow, IconDuplicate, IconTrash, IconEdit } from '@/components/icons'
-import { usePageStore } from '@/stores/pages'
-import { storeToRefs } from 'pinia'
-
-const pageStore = usePageStore()
-const { activePageId } = storeToRefs(pageStore)
 
 interface IPageDragableItem {
   isPageActive: boolean
